@@ -1,0 +1,71 @@
+service: blog-api
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+
+functions:
+  createUser:
+    handler: user-handler.createUser
+    events:
+      - http:
+          path: user
+          method: post
+          cors: true
+
+  authUser:
+    handler: user-handler.authUser
+    events:
+      - http:
+          path: user/login
+          method: post
+          cors: true
+
+  createSpace:
+    handler: user-space-handler.createSpace
+    events:
+      - http:
+          path: user/space
+          method: post
+          cors: true
+
+  listUserSpaces:
+    handler: user-space-handler.listUserSpaces
+    events:
+      - http:
+          path: user/{id}/space
+          method: get
+          cors: true
+
+  createBlog:
+    handler: user-blog-handler.createBlog
+    events:
+      - http:
+          path: user/{id}/space/{sid}/blog
+          method: post
+          cors: true
+
+  listUserBlogs:
+    handler: user-blog-handler.listUserBlogs
+    events:
+      - http:
+          path: user/{id}/blog
+          method: get
+          cors: true
+
+  approveBlog:
+    handler: user-blog-handler.approveBlog
+    events:
+      - http:
+          path: user/{id}/blog/{bid}/approve
+          method: put
+          cors: true
+
+  listAllBlogs:
+    handler: user-blog-handler.listAllBlogs
+    events:
+      - http:
+          path: /blog
+          method: get
+          cors: true
+
