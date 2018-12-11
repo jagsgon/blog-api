@@ -45,7 +45,7 @@ module.exports.createSpace = (event, context, callback) => {
 };
 
 module.exports.listUserSpaces = (event, context, callback) => {
-  if (!validator.isAlphanumeric(event.pathParameters.id)) {
+  if (event.pathParameters.id == null || !validator.isAlphanumeric(event.pathParameters.id)) {
     callback(null, createErrorResponse(400, 'Incorrect id'));
     return;
   }
