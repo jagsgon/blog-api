@@ -23,6 +23,7 @@ Using Mongoose, ODM and Bluebird for Promises.
 
 # Assumptions / Miscellaneous:
 - Security is handled by SSL : https
+- We should implement JWT based authentication and authorization in Next version, for better security controls. // time constraint
 - Automated unit tests not implemented due to time constraint.
 - Change you mongoDB url in package.json in config.mongo_url
 
@@ -126,4 +127,53 @@ curl -XPOST -H "Content-type: application/json" -d '{
 {"id": "97868blog34977"}
 ```
 
+*List all blogs*
+
+```bash
+curl -XGET -H "Content-type: application/json" 'https://YOUR-ENDPOINT-HERE.amazonaws.com/dev/blog'
+```
+```json
+[
+  {
+    "_id" : "97868blog34977",
+    "owner" : "590bpow086041086882cecc",
+    "space" : "myNewSpace",
+    "name" : "Our first blog!",
+    "description" : "Very happy to bring this article to you fun loving audience.......",
+    "__v": 0
+  },
+  {
+    "_id": "76868blog34978",
+    "owner" : "590bpow086041086882cecc",
+    "space" : "myNewSpace",
+    "name" : "Our second blog!",
+    "description" : "Very happy to bring our #2 article to you fun loving audience.......",
+    "__v": 0
+  }
+]
+
+*List User blogs*
+
+```bash
+curl -XGET -H "Content-type: application/json" 'https://YOUR-ENDPOINT-HERE.amazonaws.com/dev/user/590bpow086041086882cecc/blog'
+```
+```json
+[
+  {
+    "_id" : "97868blog34977",
+    "owner" : "590bpow086041086882cecc",
+    "space" : "myNewSpace",
+    "name" : "Our first blog!",
+    "description" : "Very happy to bring this article to you fun loving audience.......",
+    "__v": 0
+  },
+  {
+    "_id": "76868blog34978",
+    "owner" : "590bpow086041086882cecc",
+    "space" : "myNewSpace",
+    "name" : "Our second blog!",
+    "description" : "Very happy to bring our #2 article to you fun loving audience.......",
+    "__v": 0
+  }
+]
 
