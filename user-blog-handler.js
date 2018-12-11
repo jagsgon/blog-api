@@ -21,8 +21,8 @@ function dbConnectAndExecute(dbUrl, fn) {
 }
 
 module.exports.createBlog = (event, context, callback) => {
-  if (!validator.isAlphanumeric(event.pathParameters.id) ||
-        !validator.isAlphanumeric(event.pathParameters.sid) ) {
+  if (event.pathParameters.id == null || ! validator.isAlphanumeric(event.pathParameters.id) ||
+       event.pathParameters.sid == null || ! validator.isAlphanumeric(event.pathParameters.sid) ) {
     callback(null, createErrorResponse(400, 'Incorrect id'));
     return;
   }
@@ -52,7 +52,7 @@ module.exports.createBlog = (event, context, callback) => {
 };
 
 module.exports.listUserBlogs = (event, context, callback) => {
-  if (!validator.isAlphanumeric(event.pathParameters.id)) {
+  if (event.pathParameters.id == null ||  !validator.isAlphanumeric(event.pathParameters.id)) {
     callback(null, createErrorResponse(400, 'Incorrect id'));
     return;
   }
@@ -67,17 +67,15 @@ module.exports.listUserBlogs = (event, context, callback) => {
 
 
 module.exports.approveBlog = (event, context, callback) => {
-  const data = JSON.parse(event.body);
   const id = event.pathParameters.id;
-  const sid = event.pathParameters.bid;
 
-  if (!validator.isAlphanumeric(id)) {
+  if (id == null || !validator.isAlphanumeric(id)) {
     callback(null, createErrorResponse(400, 'Incorrect id'));
     return;
   }
 
   const blog =   dbConnectAndExecute(mongoString, () => (
-      BlogModel.find({ _id: bid });
+      BlogModel.find({ _id: id });
 
   if (blog != null ) {
     const space =   dbConnectAndExecute(mongoString, () => (
@@ -108,7 +106,7 @@ module.exports.approveBlog = (event, context, callback) => {
 };
 
 module.exports.listAllBlogs = (event, context, callback) => {
-  if (!validator.isAlphanumeric(event.pathParameters.id)) {
+  if (event.pathParameters.id ==null || !validator.isAlphanumeric(event.pathParameters.id)) {
     callback(null, createErrorResponse(400, 'Incorrect id'));
     return;
   }
