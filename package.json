@@ -1,0 +1,16 @@
+{
+  "name": "blog-api",
+  "version": "1.0.0",
+  "description": "Blog API based on Serverless REST API, MongoDB using Mongoose and Bluebird",
+  "main": "user-handler.js",
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "mongoose": "^4.9.6",
+    "validator": "^7.0.0"
+  },
+  "config": {
+    "mongo_url": "REPLACE-YOUR-MongoDB-ACCESS-URL-HERE"
+  },
+  "author": "Jagadeesh Gondesi",
+  "license": "MIT"
+}
