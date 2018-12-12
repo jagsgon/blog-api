@@ -46,7 +46,7 @@ serverless deploy
 
 ## Usage
 
-In `handler.js` update the `mongoString` with your mongoDB url.
+Below are some sample CURL commands for testing out the API., Please replace "YOUR-ENDPOINT-HERE.amazonaws.com" in the URL pasrt to your deployment end-point.
 
 *Register User*
 
